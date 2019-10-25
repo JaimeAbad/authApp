@@ -4,20 +4,26 @@
   <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active" routerLinkActive ="active">
-        <a class="nav-link" routerLink ="/home"> Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" routerLink = "/home"> Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item" routerLinkActive ="active">
-        <a class="nav-link" routerLink ="/precios"> Precios </a>
+        <a class="nav-link" routerLink = "/precios"> Precios </a>
       </li>
-      <li class="nav-item" routerLinkActive ="active">
-        <a class="nav-link" routerLink ="/protegida" > Protegida </a>
+      <li class="nav-item"
+          routerLinkActive ="active"
+          *ngIf="auth.loggedIn">
+        <a class="nav-link" routerLink = "/protegida" > Protegida </a>
       </li>
     </ul>
     <span class="navbar-text">
-      <button class="btn btn-outline-primary">
+      <button *ngIf="!auth.loggedIn"
+              class="btn btn-outline-primary"
+              (click) = "auth.login()">
         Acceder
       </button>
-      <button class="btn btn-outline-danger">
+      <button *ngIf="auth.loggedIn"
+              class="btn btn-outline-danger"
+              (click) = "auth.logout()">
         Salir
       </button>
     </span>
